@@ -20,7 +20,7 @@ const userHandlers = require("./userHandlers");
 // PAssword allowed ? ==> send token
 const verifyPassword = (req, res) => {
   res.send(req.user);
-}
+};
 const isItDwight = (req, res) => {
   if (
     req.body.email === "dwight@theoffice.com" &&
@@ -42,11 +42,6 @@ app.get("/api/users/:id", userHandlers.getUserById);
 app.post("/api/movies", validateMovie, movieHandlers.postMovie);
 const { hashPassword } = require("./auth.js");
 app.post("/api/users", hashPassword, userHandlers.postUser);
-app.post(
-  "/api/login",
-  userHandlers.getUserByEmailWithPasswordAndPassToNext,
-  verifyPassword
-);
 
 /**METHODE PUT */
 app.put("/api/movies/:id", validateMovie, movieHandlers.updateMovie);
